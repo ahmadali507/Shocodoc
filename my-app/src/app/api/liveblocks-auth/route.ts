@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   // Identify the user and return the result
   const { status, body } = await liveblocks.identifyUser(
     {
-      userId: user.id,
+      userId: user.info.email,
       groupIds : []
       // Optional
     },
