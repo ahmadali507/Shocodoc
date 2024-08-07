@@ -10,6 +10,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { getDocuments } from '@/lib/actions/room.actions';
 import Link from 'next/link';
 import { dateConverter } from '@/lib/utils';
+import { DeleteModal } from '@/components/DeleteModal';
 
 const Page = async () => {
   const clerkUser = await currentUser();
@@ -61,7 +62,7 @@ const Page = async () => {
 
                   </div>
                 </Link>
-
+                 <DeleteModal roomId = {id}/>
               </li>
             ))}
           </ul>
