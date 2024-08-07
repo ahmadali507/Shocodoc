@@ -15,8 +15,6 @@ import Notifications from '@/components/Notifications';
 
 const Page = async () => {
   const clerkUser = await currentUser();
-
-  
   if (!clerkUser) {
     redirect('/sign-in');
   }
