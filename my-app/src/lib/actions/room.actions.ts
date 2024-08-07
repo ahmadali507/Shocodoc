@@ -33,11 +33,11 @@ export const getDocument = async ({roomId, userId} : {roomId : string  , userId 
     try {
         const room = await liveblocks.getRoom(roomId); 
         // Bring it back here. please.... 
-        // const hasAccess = Object.keys(room.usersAccesses).includes(userId)
+        const hasAccess = Object.keys(room.usersAccesses).includes(userId)
     
-        // if(!hasAccess){
-        //     throw new Error("you do not have access to this document")
-        // }
+        if(!hasAccess){
+            throw new Error("you do not have access to this document")
+        }
         return parseStringify(room); 
         
     } catch (error) {
@@ -62,9 +62,9 @@ export const updateDocument = async(roomId : string, title : string)=>{
 
 export const getDocuments = async (email : string)=> {
     try {
-        const rooms = await liveblocks.getRooms({userId : email}); 
-        // Bring it back here. please.... 
-        // const hasAccess = Object.keys(room.usersAccesses).includes(userId)
+        const rooms= await liveblocks.getRooms({userId : email}); 
+        // // Bring it back here. please.... 
+        // const hasAccess = Object.keys(rooms.usersAccessess).includes(userId)
     
         // if(!hasAccess){
         //     throw new Error("you do not have access to this document")
