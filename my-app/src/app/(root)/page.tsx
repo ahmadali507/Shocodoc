@@ -20,8 +20,7 @@ const Page = async () => {
   }
   const roomDocuments = await getDocuments(clerkUser.emailAddresses[0].emailAddress); 
 
-  console.log(roomDocuments)
-  console.log(roomDocuments.length)
+ 
   const documents = [];
 
   return (
