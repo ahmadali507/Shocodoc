@@ -17,6 +17,7 @@ import { useThreads } from "@liveblocks/react/suspense";
 import { Composer } from "@liveblocks/react-ui";
 import Comment from "postcss/lib/comment";
 import Comments from "../Comments";
+import { DeleteModal } from "../DeleteModal";
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -50,7 +51,7 @@ export function Editor({
     <LexicalComposer initialConfig={initialConfig}>
       <div className="editor-container size-full">
         <div className="toolbar-wrapper flex min-w-full justify-between">
-          {/* {currentUserType === 'editor' && <DeleteModal roomId = {roomId}></DeleteModal>} */}
+          {currentUserType === 'editor' && <DeleteModal roomId = {roomId}></DeleteModal>}
           <ToolbarPlugin />
         </div>
 
