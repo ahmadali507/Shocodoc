@@ -2,7 +2,8 @@
 import {nanoid} from 'nanoid'
 import { liveblocks } from '../liveblocks';
 import { revalidatePath } from 'next/cache';
-import { parseStringify } from '../utils';
+import { getAccessType, parseStringify } from '../utils';
+import { CloudCog } from 'lucide-react';
 export const createDocument = async({userId, email} : CreateDocumentParams) => {
     const roomId = nanoid(); 
     try {
@@ -72,5 +73,42 @@ export const getDocuments = async (email : string)=> {
         
     } catch (error) {
         console.log("THE ERROR HAPPENDED WHILE GETTIGN THE ROOMs.")
+    }
+}
+
+export const updateDocumentAccess = async({roomId, email, userType, updatedBy}:ShareDocumentParams)=>{
+    try {
+        const userAccessess: RoomAccesses = {
+            [email] : getAccessType(userType) as AccessType
+        }
+        const room = await liveblocks.updateRoom(roomId, {
+            usersAccesses : userAccessess
+        })
+        if(room){
+            //    send a notification to the user
+        }
+        
+        revalidatePath(`/documents/${roomId}`); 
+        return parseStringify(room)
+    } catch (error) {
+        console.log('error happened while accessing documents')
+    }
+}
+export const removeCollaborator = async ({roomId, email} : {roomId: string , email : string})=>{
+    try {
+        const room = await liveblocks.getRoom(roomId); 
+        if(room.metadata.email === email){
+            throw new Error("you cannot remove yourself")
+        }
+        const updatedRoom = await liveblocks.updateRoom(roomId,{
+            usersAccesses : {
+                [email] : null, 
+            }
+        })
+        revalidatePath(`/documents/${roomId}`)
+        return parseStringify(updatedRoom)
+        
+    } catch (error) {
+        console.log(error)
     }
 }
