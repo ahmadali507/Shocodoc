@@ -154,6 +154,7 @@ export default function ToolbarPlugin() {
       >
         <i className="format h1" />
       </button>
+  {/* heading formates added */}
       <button
         onClick={() => editor.update(() => toggleBlock('h2'))}
         data-active={activeBlock === 'h2' ? '' : undefined}
