@@ -79,11 +79,11 @@ export const getDocuments = async (email : string)=> {
 
 export const updateDocumentAccess = async({roomId, email, userType, updatedBy}:ShareDocumentParams)=>{
     try {
-        const userAccessess: RoomAccesses = {
+        const usersAccesses: RoomAccesses = {
             [email] : getAccessType(userType) as AccessType
         }
         const room = await liveblocks.updateRoom(roomId, {
-            usersAccesses : userAccessess
+            usersAccesses
         })
         if(room){
             const notificationid = nanoid(); 
