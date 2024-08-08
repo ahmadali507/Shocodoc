@@ -71,7 +71,7 @@
   }
 
   .shad-popover {
-    @apply w-[460px] border-none bg-dark-200 shadow-lg !important;
+    @apply w-[460px] border-none bg-dark-200 shadow-lg overflow-auto !important;
   }
 
   .floating-toolbar {

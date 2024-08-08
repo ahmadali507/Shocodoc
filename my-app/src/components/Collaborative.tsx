@@ -35,17 +35,17 @@ const CollaborativeRoom = ({roomId, roomMetadata, users, currentUserType} : Coll
 
        }
       } catch (error) {
-       
+       console.log(error)
       }
       setLoading(false); 
      }
   }
 
   useEffect(()=> {
-    const handleClickOutside = (e:MouseEvent)=>{
+    const handleClickOutside = async (e:MouseEvent)=>{
       if(containerRef.current && !containerRef.current.contains(e.target as Node)){
         setEditing(false)
-        updateDocument(roomId, documentTitle); 
+       await updateDocument(roomId, documentTitle); 
       }
     }
     document.addEventListener('mousedown', handleClickOutside) 
