@@ -27,7 +27,7 @@ const CollaborativeRoom = ({roomId, roomMetadata, users, currentUserType} : Coll
       try {
        if(documentTitle !== roomMetadata.title)
        {
-        const updatedDocument = await updateDocument('roomId', documentTitle); 
+        const updatedDocument = await updateDocument(roomId, documentTitle); 
 
         if(updatedDocument){
           setEditing(false); 

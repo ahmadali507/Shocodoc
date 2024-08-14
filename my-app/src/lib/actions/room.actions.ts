@@ -54,7 +54,7 @@ export const updateDocument = async(roomId : string, title : string)=>{
             }
         })
           revalidatePath(`document/${roomId}`)
-
+          window.location.reload();
           return parseStringify(updatedRoom)
     } catch (error) {
         console.log(error)
@@ -103,6 +103,7 @@ export const updateDocumentAccess = async({roomId, email, userType, updatedBy}:S
         }
         
         revalidatePath(`/documents/${roomId}`); 
+        window.location.reload();
         return parseStringify(room)
     } catch (error) {
         console.log('error happened while accessing documents')
@@ -120,6 +121,7 @@ export const removeCollaborator = async ({roomId, email} : {roomId: string , ema
             }
         })
         revalidatePath(`/documents/${roomId}`)
+        window.location.reload();
         return parseStringify(updatedRoom)
         
     } catch (error) {
